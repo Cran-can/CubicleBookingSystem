@@ -1,5 +1,6 @@
 package com.capgemini.seatbooking.controller;
 
+import com.capgemini.seatbooking.dto.LoginDto;
 import com.capgemini.seatbooking.dto.UserDto;
 import com.capgemini.seatbooking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,11 @@ public class UserController {
     public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
         userService.registerUser(userDto);
         return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+    }
+    
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody LoginDto loginDto){
+    	userService.loginUser(loginDto);
+    	return new ResponseEntity<>("Login sucessful",HttpStatus.OK);
     }
 }

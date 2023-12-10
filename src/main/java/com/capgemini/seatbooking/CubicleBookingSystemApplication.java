@@ -9,5 +9,4 @@ public class CubicleBookingSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CubicleBookingSystemApplication.class, args);
 	}
-
 }

@@ -1,10 +1,9 @@
 package com.capgemini.seatbooking.exception;
 
-public class RegistrationException extends RuntimeException {
+public class LoginException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-     public RegistrationException(String message) {
+	public LoginException(String message) {
         super(message);
     }
 }
-
