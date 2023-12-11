@@ -6,7 +6,6 @@ public class LoginDto {
     private String password;
 	public LoginDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public LoginDto(String email, String password) {
 		super();

@@ -1,4 +1,7 @@
+// UserService.java
 package com.capgemini.seatbooking.service;
+
+import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +32,9 @@ public class UserService {
      User user = new User();
      user.setEmail(userDto.getEmail());
      user.setUsername(userDto.getUsername());
-     user.setPassword(userDto.getPassword());
+     String originalInput=userDto.getPassword();
+     String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
+     user.setPassword(encodedString);
      user.setUserType(UserType.USER); // Assuming a default user type
 
      // Save the user to the database
@@ -47,11 +52,15 @@ public class UserService {
      validateLoginDto(loginDto);
 
      // Implement user authentication logic
-     @SuppressWarnings("unused")
-	User user = userRepository.findByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword())
+     String originalInput=loginDto.getPassword();
+     String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
+     
+     @SuppressWarnings("unused")  
+	User user = userRepository.findByEmailAndPassword(loginDto.getEmail(), encodedString)
              .orElseThrow(() -> new LoginException("Invalid credentials"));
  }
 
+ 
  private void validateLoginDto(LoginDto loginDto) {
      if (loginDto.getEmail() == null || loginDto.getEmail().isEmpty() ||
          loginDto.getPassword() == null || loginDto.getPassword().isEmpty()) {

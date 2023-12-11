@@ -10,3 +10,4 @@ public class CubicleBookingSystemApplication {
 		SpringApplication.run(CubicleBookingSystemApplication.class, args);
 	}
 }
+
